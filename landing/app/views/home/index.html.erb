@@ -1,0 +1,12 @@
+<% content_for :title, "azinger.io" %>
+<main>
+  <h1 class="logo"><span>azinger</span><b>.io</b></h1>
+  <p class="tag">Things we love.</p>
+  <ul class="grid">
+    <% [["🤘","Rock on"],["👨‍👩‍👧‍👦","Family of five"],["🎸","Guitar"],["⛳","Golf"],["⚾","Baseball"],
+        ["🎬","Film"],["💻","Software"],["🏐","Volleyball"],["🎾","Tennis"],["🐱","Cats"],
+        ["📻","Radio"],["📺","TV"],["🍾","Champagne"],["🍺","Beer"],["🏃","Running"]].each do |e, l| %>
+      <li title="<%= l %>" aria-label="<%= l %>"><%= e %></li>
+    <% end %>
+  </ul>
+</main>

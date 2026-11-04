@@ -1,10 +1,71 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: -apple-system, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #000;
+  color: #f5f5f7;
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  text-align: center;
+  padding: 2vh 4vw;
+}
+
+.logo {
+  font-size: clamp(2.5rem, 9vmin, 5.5rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.logo b {
+  font-weight: 300;
+  color: #86868b;
+}
+
+.tag {
+  margin-top: 1.5vh;
+  font-size: clamp(1rem, 2.6vmin, 1.5rem);
+  color: #86868b;
+  font-weight: 300;
+}
+
+.grid {
+  list-style: none;
+  padding: 0;
+  margin: 5vh auto 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(.5rem, 2.5vmin, 1.5rem);
+  max-width: min(90vw, 62vh);
+}
+
+.grid li {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.8rem, 7vmin, 3.5rem);
+  background: #1d1d1f;
+  border-radius: 22%;
+  transition: transform .2s ease;
+  cursor: default;
+}
+
+.grid li:hover {
+  transform: scale(1.12);
+}
