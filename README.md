@@ -49,6 +49,47 @@ The landing app is served from this machine and exposed at https://example.com t
    cloudflared tunnel --config ~/.cloudflared/config.yml run my-tunnel
    ```
 
+## Cloudflare WAF Rule (Free Plan)
+Scanners constantly probe for leaked files (`.git`, `.env`, keys, backups, WordPress paths). Blocking them at Cloudflare's edge keeps them off the tunnel and out of the Rails log.
+
+Dashboard: **Security → WAF → Custom rules → Create rule → Edit expression**, action **Block**.
+
+The Free plan doesn't allow the `matches` (regex) operator or `ends_with`, so the rule uses only `contains` and `in`:
+
+```
+(http.request.uri.path contains "/.git") or
+(http.request.uri.path contains "/.aws") or
+(http.request.uri.path contains "/.ssh") or
+(http.request.uri.path contains "/.kube") or
+(http.request.uri.path contains "/.docker") or
+(http.request.uri.path contains "/.github") or
+(http.request.uri.path contains "/.env") or
+(http.request.uri.path in {"/.npmrc" "/.netrc" "/_netrc" "/.pypirc" "/.s3cfg" "/.boto" "/.dockercfg" "/.htaccess" "/.htpasswd" "/.gitignore" "/.gitmodules" "/.travis.yml" "/.gitlab-ci.yml" "/.drone.yml" "/Jenkinsfile" "/Dockerfile" "/docker-compose.yml" "/docker-compose.yaml" "/package.json" "/webpack.config.js" "/kubeconfig" "/id_rsa" "/id_rsa.pub" "/id_dsa"}) or
+(http.request.uri.path contains "/wp-") or
+(http.request.uri.path contains "/wordpress") or
+(http.request.uri.path contains "xmlrpc") or
+(http.request.uri.path contains "/actuator") or
+(http.request.uri.path contains "/administrator") or
+(http.request.uri.path contains "/phpmyadmin") or
+(http.request.uri.path contains "credentials") or
+(http.request.uri.path contains "service-account") or
+(http.request.uri.path contains "service_account") or
+(http.request.uri.path contains "adminsdk") or
+(http.request.uri.path contains "/backup") or
+(http.request.uri.path contains "/dump") or
+(http.request.uri.path contains ".sql") or
+(http.request.uri.path contains ".bak") or
+(http.request.uri.path contains ".zip") or
+(http.request.uri.path contains ".tar") or
+(http.request.uri.path contains ".tgz") or
+(http.request.uri.path contains ".pem") or
+(http.request.uri.path contains ".key")
+```
+
+This is safe for a static landing page. Revisit it if the site ever serves paths containing these strings (for example a `/backup` page or `.zip` downloads).
+
+Verify with `curl -I https://example.com/.git/config` (expect 403) and `curl -I https://example.com/` (expect 200). Blocked requests show up under **Security → Events**.
+
 ## Notes
 - `example.com` must be in `config.hosts` in `landing/config/environments/production.rb`.
 - A `connection refused` error on `localhost:3000` in the tunnel log means the Rails server isn't running.
