@@ -83,7 +83,33 @@ The Free plan doesn't allow the `matches` (regex) operator or `ends_with`, so th
 (http.request.uri.path contains ".tar") or
 (http.request.uri.path contains ".tgz") or
 (http.request.uri.path contains ".pem") or
-(http.request.uri.path contains ".key")
+(http.request.uri.path contains ".key") or
+(http.request.uri.path contains ".php") or
+(http.request.uri.path contains ".json") or
+(http.request.uri.path contains ".toml") or
+(http.request.uri.path contains ".yml") or
+(http.request.uri.path contains ".yaml") or
+(http.request.uri.path contains ".map") or
+(http.request.uri.path contains ".log") or
+(http.request.uri.path contains "/cgi-bin") or
+(http.request.uri.path contains "/_next") or
+(http.request.uri.path contains "/storage") or
+(http.request.uri.path contains "/bootstrap") or
+(http.request.uri.path contains "/artisan") or
+(http.request.uri.path contains "/graphql") or
+(http.request.uri.path contains "/swagger") or
+(http.request.uri.path contains "/openapi") or
+(http.request.uri.path contains "/api") or
+(http.request.uri.path contains "/config") or
+(http.request.uri.path contains "/settings") or
+(http.request.uri.path contains "/secrets") or
+(http.request.uri.path contains "/env") or
+(http.request.uri.path contains "/admin") or
+(http.request.uri.path contains "/dashboard") or
+(http.request.uri.path contains "/.vercel") or
+(http.request.uri.path contains "/.serverless") or
+(http.request.uri.path contains "/.langchain") or
+(http.request.uri.path contains "/.huggingface")
 ```
 
 This is safe for a static landing page. Revisit it if the site ever serves paths containing these strings (for example a `/backup` page or `.zip` downloads).
