@@ -6,10 +6,9 @@ Personal Monorepo
 
 # New Api
 
-
 # New Page
 
-# Hosting
+# Landing
 The landing app is served from this machine and exposed at https://example.com through a Cloudflare Tunnel.
 
 ## Cloudflare Tunnel Setup
@@ -49,7 +48,7 @@ The landing app is served from this machine and exposed at https://example.com t
    cloudflared tunnel --config ~/.cloudflared/config.yml run my-tunnel
    ```
 
-## Cloudflare WAF Rule (Free Plan)
+## Cloudflare Security Rule Maintenance
 Scanners constantly probe for leaked files (`.git`, `.env`, keys, backups, WordPress paths). Blocking them at Cloudflare's edge keeps them off the tunnel and out of the Rails log.
 
 Dashboard: **Security → WAF → Custom rules → Create rule → Edit expression**, action **Block**.
@@ -64,7 +63,11 @@ The Free plan doesn't allow the `matches` (regex) operator or `ends_with`, so th
 (http.request.uri.path contains "/.docker") or
 (http.request.uri.path contains "/.github") or
 (http.request.uri.path contains "/.env") or
-(http.request.uri.path in {"/.npmrc" "/.netrc" "/_netrc" "/.pypirc" "/.s3cfg" "/.boto" "/.dockercfg" "/.htaccess" "/.htpasswd" "/.gitignore" "/.gitmodules" "/.travis.yml" "/.gitlab-ci.yml" "/.drone.yml" "/Jenkinsfile" "/Dockerfile" "/docker-compose.yml" "/docker-compose.yaml" "/package.json" "/webpack.config.js" "/kubeconfig" "/id_rsa" "/id_rsa.pub" "/id_dsa"}) or
+(http.request.uri.path in {"/.npmrc" "/.netrc" "/_netrc" "/.pypirc" "/.s3cfg" "/.boto" "/.dockercfg" "/.htaccess" "/.htpasswd" "/.gitignore" "/.gitmodules" "/.travis.yml" "/.gitlab-ci.yml" "/.drone.yml" "/Jenkinsfile" "/Dockerfile" "/docker-compose.yml" "/docker-compose.yaml" "/package.json" "/webpack.config.js" "/kubeconfig" "/id_rsa" "/id_rsa.pub" "/id_dsa" "/.dev.vars" "/.firebaserc" "/.amplifyrc" "/.zshrc" "/.bashrc" "/rclone.conf" "/sitemap.xml" "/sitemap_index.xml" "/llms.txt"}) or
+(http.request.uri.path in {"/account" "/billing" "/auth" "/console" "/login" "/invite" "/organization" "/integrations" "/webhooks" "/onboarding" "/debug" "/playground" "/pricing" "/checkout" "/internal"}) or
+(http.request.uri.path contains "/proc/") or
+(http.request.uri.path contains "tfstate") or
+(http.request.uri.path contains "debug") or
 (http.request.uri.path contains "/wp-") or
 (http.request.uri.path contains "/wordpress") or
 (http.request.uri.path contains "xmlrpc") or
@@ -112,7 +115,7 @@ The Free plan doesn't allow the `matches` (regex) operator or `ends_with`, so th
 (http.request.uri.path contains "/.huggingface")
 ```
 
-This is safe for a static landing page. Revisit it if the site ever serves paths containing these strings (for example a `/backup` page or `.zip` downloads).
+This is safe for a static landing page. Revisit it if the site ever serves paths containing these strings (for example a `/backup` page, `.zip` downloads, a `/login` or `/pricing` page, or a `/sitemap.xml` you want search engines to read).
 
 Verify with `curl -I https://example.com/.git/config` (expect 403) and `curl -I https://example.com/` (expect 200). Blocked requests show up under **Security → Events**.
 
