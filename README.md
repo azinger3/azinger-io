@@ -65,6 +65,7 @@ The Free plan doesn't allow the `matches` (regex) operator or `ends_with`, so th
 (http.request.uri.path contains "/.env") or
 (http.request.uri.path in {"/.npmrc" "/.netrc" "/_netrc" "/.pypirc" "/.s3cfg" "/.boto" "/.dockercfg" "/.htaccess" "/.htpasswd" "/.gitignore" "/.gitmodules" "/.travis.yml" "/.gitlab-ci.yml" "/.drone.yml" "/Jenkinsfile" "/Dockerfile" "/docker-compose.yml" "/docker-compose.yaml" "/package.json" "/webpack.config.js" "/kubeconfig" "/id_rsa" "/id_rsa.pub" "/id_dsa" "/.dev.vars" "/.firebaserc" "/.amplifyrc" "/.zshrc" "/.bashrc" "/rclone.conf" "/sitemap.xml" "/sitemap_index.xml" "/llms.txt"}) or
 (http.request.uri.path in {"/account" "/billing" "/auth" "/console" "/login" "/invite" "/organization" "/integrations" "/webhooks" "/onboarding" "/debug" "/playground" "/pricing" "/checkout" "/internal"}) or
+(http.request.uri.path in {"/.svn/wc.db" "/app-props" "/app.py" "/application-dev.properties" "/aws-exports.js" "/aws/aws_credential_file" "/azure-config.js" "/azure-functions" "/azure.env" "/backend.py" "/index.js" "/info" "/next.config.js" "/phpinfo" "/scripts/azure/backend.env" "/server.js" "/server/app.py" "/src/llm/azure_openai.py" "/start.sh" "/test" "/vite.config.js" "/vite.config.ts" "/web.config"}) or
 (http.request.uri.path contains "/proc/") or
 (http.request.uri.path contains "tfstate") or
 (http.request.uri.path contains "debug") or
@@ -115,7 +116,7 @@ The Free plan doesn't allow the `matches` (regex) operator or `ends_with`, so th
 (http.request.uri.path contains "/.huggingface")
 ```
 
-This is safe for a static landing page. Revisit it if the site ever serves paths containing these strings (for example a `/backup` page, `.zip` downloads, a `/login` or `/pricing` page, or a `/sitemap.xml` you want search engines to read).
+Revisit this rule if the site ever serves matching paths (for example a `/backup` page, `.zip` downloads, `/login`, `/pricing`, `/index.js`, or a `/sitemap.xml` you want search engines to read). Exact matches only block the listed paths; the `contains` rules also block other paths containing those strings.
 
 Verify with `curl -I https://example.com/.git/config` (expect 403) and `curl -I https://example.com/` (expect 200). Blocked requests show up under **Security → Events**.
 
