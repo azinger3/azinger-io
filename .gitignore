@@ -34,6 +34,15 @@
 **/config/master.key
 **/config/credentials/*.key
 
+# Local Pulumi configuration, state, and generated imports
+landing/iac/cloudflare/.env*
+landing/iac/cloudflare/.venv/
+landing/iac/cloudflare/.pulumi/
+landing/iac/cloudflare/.state/
+landing/iac/cloudflare/Pulumi.*.yaml
+landing/iac/cloudflare/managed_ruleset.py
+landing/iac/cloudflare/__pycache__/
+
 # Assets and dependencies
 **/public/assets/
 **/node_modules/

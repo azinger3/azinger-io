@@ -45,6 +45,7 @@
 
 # Ignore development files
 /.devcontainer
+/iac/
 
 # Ignore Docker-related files
 /.dockerignore

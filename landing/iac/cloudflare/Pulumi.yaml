@@ -1,0 +1,6 @@
+name: azinger-cloudflare
+description: Cloudflare configuration for azinger.io
+runtime:
+  name: python
+  options:
+    virtualenv: .venv

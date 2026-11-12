@@ -51,6 +51,8 @@ The landing app is served from this machine and exposed at https://example.com t
 ## Cloudflare Security Rule Maintenance
 Scanners constantly probe for leaked files (`.git`, `.env`, keys, backups, WordPress paths). Blocking them at Cloudflare's edge keeps them off the tunnel and out of the Rails log.
 
+For the prepared Python Pulumi project and instructions to safely import the existing dashboard rules, see [landing/iac/cloudflare](landing/iac/cloudflare/README.md). Until that import and an intentional update are complete, the dashboard remains the source of truth.
+
 Dashboard: **Security → WAF → Custom rules → Create rule → Edit expression**, action **Block**.
 
 The Free plan doesn't allow the `matches` (regex) operator or `ends_with`, so the rule uses only `contains` and `in`:
