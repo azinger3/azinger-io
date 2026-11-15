@@ -39,6 +39,11 @@ Rails.application.configure do
   if ENV["LANDING_LOG_DIR"]
     loggers << ActiveSupport::Logger.new(File.join(ENV.fetch("LANDING_LOG_DIR"), "production.log"))
   end
+  loggers.each do |logger|
+    logger.formatter = proc do |_severity, _time, _progname, message|
+      "[landing] #{message}\n"
+    end
+  end
   config.logger = ActiveSupport::TaggedLogging.new(ActiveSupport::BroadcastLogger.new(*loggers))
 
   # Change to "debug" to log everything (including potentially personally-identifiable information!).

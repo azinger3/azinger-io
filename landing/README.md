@@ -32,9 +32,10 @@ docker compose up -d       # start again using the existing image
 
 `down` does not delete the bind-mounted databases, uploads, or logs. Rebuild
 with `docker compose up -d --build` after changing the app. Rails writes to
-both `log/production.log` and the container output. Back up the data
-directories; for consistent SQLite backups, stop the app first or use SQLite's
-backup facility.
+both `log/production.log` and the container output, prefixing its entries with
+`[landing]`. Output from other processes, such as Puma, is not prefixed. Back
+up the data directories; for consistent SQLite backups, stop the app first or
+use SQLite's backup facility.
 
 From the repository root, follow the last 100 lines and new Rails log entries:
 
@@ -46,6 +47,11 @@ From the repository root, follow the last 100 lines and new Rails log entries:
 Press Ctrl-C to stop following. The script follows the configured
 `LANDING_DATA_ROOT` for production or `LANDING_LOG_DIR` for development.
 Use `docker compose logs -f` for all container output, including Puma.
+
+Run `./clear-landing-log.sh` from the repository root to clear the production
+log file without stopping the app. This removes every entry in the file,
+including entries from other apps sharing it; Docker's container logs are
+unaffected.
 
 ## Local development
 
