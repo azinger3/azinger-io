@@ -61,6 +61,8 @@ unaffected.
 
 From the repository root, run `./landing-preview-start.sh` to start the
 development server on port 3001. Pass `-p <port>` to use another port.
+The preview uses a separate asset manifest so existing production assets do
+not hide stylesheet changes.
 Development uses
 `/Users/rob/azinger.io/db/development.sqlite3` and
 `/Users/rob/azinger.io/log/development.log`, separate from production. Create

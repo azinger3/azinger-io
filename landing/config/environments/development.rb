@@ -62,6 +62,9 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  # Keep a production asset manifest from masking source changes in the preview.
+  config.assets.manifest_path = Rails.root.join("tmp/development-assets/.manifest.json")
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

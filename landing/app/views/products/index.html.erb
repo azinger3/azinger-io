@@ -1,0 +1,45 @@
+<% content_for :title, "Products | azinger.io" %>
+<main class="portfolio">
+  <div class="portfolio-inner">
+    <nav class="portfolio-nav" aria-label="Breadcrumb">
+      <%= link_to "azinger.io", root_path, class: "brand-link" %>
+      <span aria-hidden="true">/</span>
+      <span>Products</span>
+    </nav>
+
+    <header class="portfolio-heading">
+      <p class="eyebrow">A portfolio of work</p>
+      <h1>Products<span class="heading-dot">.</span></h1>
+      <p>Two decades of building, shaping, and supporting the systems behind the work.</p>
+    </header>
+
+    <ul class="product-grid" aria-label="Industries and product experience">
+      <li>
+        <%= link_to it_asset_lifecycle_path, class: "product-tile product-tile-link" do %>
+          <span class="product-emoji" aria-hidden="true">💻</span>
+          <span class="product-label">IT assets &amp; fulfillment</span>
+          <span class="product-status">Explore insight <span aria-hidden="true">↗</span></span>
+        <% end %>
+      </li>
+      <% [
+        [ "🚢", "Shipping & logistics" ],
+        [ "🏥", "Health insurance" ],
+        [ "💊", "Pharmacy benefits" ],
+        [ "🏡", "Senior living & hospitality" ],
+        [ "👗", "Fashion ecommerce" ],
+        [ "📦", "Fulfillment & supply chain" ],
+        [ "💳", "Financial services" ],
+        [ "🌾", "Agriculture" ],
+        [ "🚗", "Automotive advertising" ]
+      ].each do |emoji, label| %>
+        <li>
+          <div class="product-tile">
+            <span class="product-emoji" aria-hidden="true"><%= emoji %></span>
+            <span class="product-label"><%= label %></span>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <p class="portfolio-note">More stories to come.</p>
+  </div>
+</main>

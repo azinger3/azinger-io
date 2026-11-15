@@ -22,7 +22,13 @@
         ["🍺","Beer"],
         ["🏃","Running"]
       ].each do |e, l| %>
-      <li title="<%= l %>" aria-label="<%= l %>"><%= e %></li>
+      <li title="<%= l %>">
+        <% if l == "Software" %>
+          <%= link_to products_path, class: "grid-link", aria: { label: "Products" } do %><span aria-hidden="true"><%= e %></span><% end %>
+        <% else %>
+          <span role="img" aria-label="<%= l %>"><%= e %></span>
+        <% end %>
+      </li>
     <% end %>
   </ul>
 </main>

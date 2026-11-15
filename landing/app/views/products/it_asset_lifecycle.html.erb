@@ -1,0 +1,77 @@
+<% content_for :title, "IT Asset Lifecycle | Product Insights | azinger.io" %>
+<main class="insights">
+  <div class="insights-inner">
+    <nav class="portfolio-nav" aria-label="Breadcrumb">
+      <%= link_to "azinger.io", root_path, class: "brand-link" %>
+      <span aria-hidden="true">/</span>
+      <%= link_to "Products", products_path %>
+      <span aria-hidden="true">/</span>
+      <span>Product Insights</span>
+    </nav>
+
+    <header class="insights-heading">
+      <p class="eyebrow">Product Insights <span aria-hidden="true">/</span> 2007–2011</p>
+      <h1>Internal IT fulfillment<br class="desktop-break"> &amp; asset lifecycle.</h1>
+      <p>From fragmented hardware operations to a connected, accountable fulfillment hub.</p>
+    </header>
+
+    <div class="insights-meta">
+      <div><span>Domain</span><p>Procurement, internal logistics &amp; asset lifecycle</p></div>
+      <div><span>Tools &amp; technology</span><p>Microsoft Access · VBA · SQL Server · ZPL · Track-It!</p></div>
+      <div><span>My role</span><p>Contributor, builder &amp; maintainer</p></div>
+    </div>
+
+    <section class="insight-grid" aria-label="Product insights">
+      <article class="insight-card insight-card-problem">
+        <div class="card-top"><h2>The problem</h2><span aria-hidden="true">🧩</span></div>
+        <p>Hardware purchasing, storage, and retirement were spread across 14 operational zones and office buildings. Siloed teams faced inconsistent standards, duplicate stock, budget blind spots, and disjointed tracking.</p>
+        <p>Centralizing the work meant creating a dependable way to move equipment and reconcile costs across teams.</p>
+      </article>
+
+      <article class="insight-card insight-card-solution">
+        <div class="card-top"><h2>The solution</h2><span aria-hidden="true">🏗️</span></div>
+        <p>An internal procurement and fulfillment hub, supported by purpose-built applications connecting warehouse operations to enterprise records.</p>
+        <p>I started as a contributor and went on to design, build, and maintain the internal tools that supported the operation.</p>
+      </article>
+
+      <article class="insight-card insight-card-scope">
+        <div class="card-top"><h2>Centralized hub</h2><span aria-hidden="true">📍</span></div>
+        <p class="card-stat">14</p>
+        <p>Operational zones served across multiple office buildings.</p>
+      </article>
+
+      <article class="insight-card">
+        <div class="card-top"><h2>Procurement &amp; fulfillment</h2><span aria-hidden="true">📦</span></div>
+        <p>Access and VBA workflows helped receive bulk vendor shipments, allocate stock across groups, and fulfill hardware orders across the city.</p>
+      </article>
+
+      <article class="insight-card">
+        <div class="card-top"><h2>Storage &amp; retrieval</h2><span aria-hidden="true">🗂️</span></div>
+        <p>Inventory tools mapped physical storage locations, streamlined picking, and made available and reserved stock visible.</p>
+      </article>
+
+      <article class="insight-card">
+        <div class="card-top"><h2>Repair &amp; RMA</h2><span aria-hidden="true">🔧</span></div>
+        <p>Structured intake and turnaround workflows followed defective hardware through vendor warranty repair and back into deployable stock.</p>
+      </article>
+
+      <article class="insight-card">
+        <div class="card-top"><h2>Barcodes &amp; labels</h2><span aria-hidden="true">🏷️</span></div>
+        <p>Raw ZPL templates printed standardized asset tags, bin labels, and freight manifests on demand.</p>
+      </article>
+
+      <article class="insight-card insight-card-wide">
+        <div class="card-top"><h2>Imaging, refresh &amp; disposal</h2><span aria-hidden="true">🚚</span></div>
+        <p>I prepared new desktops and laptops for automated imaging and provisioning as part of hardware obsolescence cycles. Older units were swapped out and prepared for disposal and DoD GDisk wiping in our onsite lab.</p>
+        <p>End-of-life logs documented palletizing, freight manifests, and handoffs to certified recyclers. Serial-level trails supported Finance with capital asset write-offs and budget reconciliation.</p>
+      </article>
+
+      <article class="insight-card insight-card-wide">
+        <div class="card-top"><h2>Connected to enterprise records</h2><span aria-hidden="true">🔗</span></div>
+        <p>Access applications connected to the SQL Server backend powering Track-It!, keeping warehouse activity aligned with enterprise IT and accounting records.</p>
+      </article>
+    </section>
+
+    <%= link_to "← Back to Products", products_path, class: "back-link" %>
+  </div>
+</main>

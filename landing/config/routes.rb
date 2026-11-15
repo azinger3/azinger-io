@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root "home#index"
+  get "products", to: "products#index"
+  get "products/it-asset-lifecycle", to: "products#it_asset_lifecycle", as: :it_asset_lifecycle
 end
