@@ -8,7 +8,6 @@ services:
     environment:
       LANDING_DB_DIR: /rails/storage
       LANDING_LOG_DIR: /rails/log
-      SOLID_QUEUE_IN_PUMA: "true"
     volumes:
       - type: bind
         source: ${LANDING_DATA_ROOT:-/Users/rob/azinger.io}/db

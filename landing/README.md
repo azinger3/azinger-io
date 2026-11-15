@@ -37,6 +37,10 @@ both `log/production.log` and the container output, prefixing its entries with
 up the data directories; for consistent SQLite backups, stop the app first or
 use SQLite's backup facility.
 
+Solid Queue is not used. Any future Active Job work runs in-process and is
+not persisted across restarts. An existing `production_queue.sqlite3` and
+its associated WAL files are left untouched.
+
 From the repository root, follow the last 100 lines and new Rails log entries:
 
 ```sh
@@ -55,7 +59,9 @@ unaffected.
 
 ## Local development
 
-Run `bin/rails server` normally. Development uses
+From the repository root, run `./landing-preview-start.sh` to start the
+development server on port 3001. Pass `-p <port>` to use another port.
+Development uses
 `/Users/rob/azinger.io/db/development.sqlite3` and
 `/Users/rob/azinger.io/log/development.log`, separate from production. Create
 the directories above first, then run `bin/rails db:prepare` if needed. The
@@ -68,9 +74,8 @@ Existing production databases in `storage/` likewise must be backed up and
 moved to the host `db` directory before the first container startup if you
 want to retain their data.
 
-Production and development cannot both bind port 3000. While the container
-is running, use `bin/rails server -p 3001` for development. The Cloudflare
-tunnel can continue to point to `localhost:3000` for production.
+The Cloudflare tunnel can continue to point to `localhost:3000` for production
+while the preview runs on port 3001.
 
 For another host or isolated run, set `LANDING_DATA_ROOT` for Compose (the
 directory containing `db` and `log`) and optionally `LANDING_PORT` for the

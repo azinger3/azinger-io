@@ -3,6 +3,15 @@ require "open3"
 require "tmpdir"
 
 class ProductionLoggingTest < ActiveSupport::TestCase
+  test "production uses the in-process job adapter" do
+    env = { "RAILS_ENV" => "production", "SECRET_KEY_BASE_DUMMY" => "1" }
+    code = "puts ActiveJob::Base.queue_adapter.class.name"
+    stdout, stderr, status = Open3.capture3(env, RbConfig.ruby, Rails.root.join("bin/rails").to_s, "runner", code)
+
+    assert status.success?, stderr
+    assert_equal "ActiveJob::QueueAdapters::AsyncAdapter", stdout.lines.last&.strip
+  end
+
   test "production prefixes tagged and untagged messages in both destinations" do
     Dir.mktmpdir do |log_dir|
       env = {

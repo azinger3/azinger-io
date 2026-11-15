@@ -20,10 +20,11 @@ class DatabaseConfigurationTest < ActiveSupport::TestCase
 
     assert_equal "/tmp/landing-databases/development.sqlite3", config.dig("development", "database")
     assert_equal "storage/test.sqlite3", config.dig("test", "database")
-    %w[primary cache queue cable].each do |name|
+    %w[primary cache cable].each do |name|
       suffix = name == "primary" ? "" : "_#{name}"
       assert_equal "/tmp/landing-databases/production#{suffix}.sqlite3", config.dig("production", name, "database")
     end
+    assert_nil config.dig("production", "queue")
   ensure
     ENV["LANDING_DB_DIR"] = previous
   end

@@ -2,4 +2,4 @@
 set -euo pipefail
 
 cd "$(dirname "$0")/landing"
-exec ./bin/rails server "$@"
+exec ./bin/rails server -p 3001 "$@"
