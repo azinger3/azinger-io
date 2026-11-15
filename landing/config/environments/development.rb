@@ -2,6 +2,7 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.paths["log"] = File.join(ENV.fetch("LANDING_LOG_DIR", File.join(Dir.home, "azinger.io", "log")), "development.log")
 
   # Make code changes take effect immediately without server restart.
   config.enable_reloading = true

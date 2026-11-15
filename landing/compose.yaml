@@ -1,0 +1,32 @@
+services:
+  azinger-io-landing-main:
+    image: azinger-io-landing:main
+    container_name: azinger-io-landing-main-container
+    build: .
+    ports:
+      - "${LANDING_PORT:-3000}:80"
+    environment:
+      LANDING_DB_DIR: /rails/storage
+      LANDING_LOG_DIR: /rails/log
+      SOLID_QUEUE_IN_PUMA: "true"
+    volumes:
+      - type: bind
+        source: ${LANDING_DATA_ROOT:-/Users/rob/azinger.io}/db
+        target: /rails/storage
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${LANDING_DATA_ROOT:-/Users/rob/azinger.io}/log
+        target: /rails/log
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./config/master.key
+        target: /rails/config/master.key
+        read_only: true
+        bind:
+          create_host_path: false
+
+networks:
+  default:
+    name: azinger-io-landing-main-network

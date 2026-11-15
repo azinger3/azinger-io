@@ -39,9 +39,10 @@ The landing app is served from this machine and exposed at https://example.com t
    ```sh
    cloudflared tunnel route dns my-tunnel example.com
    ```
-6. Start the Rails app in production (from the repo root):
+6. Start the production container (see [landing/README.md](landing/README.md)
+   for setup, rebuilds, and shutdown):
    ```sh
-   RAILS_ENV=production ./start-landing.sh
+   ./start-landing-prod.sh
    ```
 7. Run the tunnel:
    ```sh
