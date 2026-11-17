@@ -212,7 +212,7 @@ main {
 
 .portfolio-heading,
 .insights-heading {
-  margin: clamp(4rem, 9vw, 7rem) 0 3rem;
+  margin: clamp(2rem, 4.5vw, 3.5rem) 0 3rem;
 }
 
 .eyebrow {
@@ -444,7 +444,7 @@ main {
 
   .portfolio-heading,
   .insights-heading {
-    margin-top: 4rem;
+    margin-top: 2rem;
   }
 
   .product-grid {
